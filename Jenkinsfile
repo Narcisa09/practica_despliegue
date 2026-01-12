@@ -13,10 +13,12 @@ pipeline {
             }
         }
 
-       stage('Ejecutar tests') {
+        stage('Ejecutar tests') {
             steps {
-                sh 'chmod +x ./node_modules/.bin/jest'  // Soluciona el problema de permisos
-                sh 'npm test -- --ci --runInBand'
+                sh '''
+                    chmod +x node_modules/.bin/jest
+                    npx jest
+                '''
             }
         }
 
@@ -43,4 +45,3 @@ pipeline {
         }
     }
 }
- 
